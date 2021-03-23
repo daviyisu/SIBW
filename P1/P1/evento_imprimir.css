@@ -1,0 +1,83 @@
+.header img {
+  padding: 10px;
+  width: 9%;
+  filter: grayscale(100%);
+  float: right;
+}
+
+.header h1 {
+  color: black;
+  font-size: 500%;
+  text-align: center;
+  font-family: mifuente;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.header {
+  border: 2px solid black;
+}
+
+@font-face {
+  font-family: mifuente;
+  src: url(fuente.ttf);
+}
+
+.container_evento {
+  width: 100%;
+}
+
+.panel_copyright {
+  display: grid;
+  border: 2px solid black;
+  padding: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.panel_evento {
+  padding: 10px;
+  margin-top: 20px;
+  border: 2px solid black;
+}
+
+.foto {
+  margin-left: 10px;
+  font-size: 80%;
+}
+
+.auxiliar h3 {
+  padding: 5px;
+}
+
+.foto img {
+  filter: grayscale(100%);
+  width: 90%;
+  height: 30%;
+}
+
+.cuerpo_evento {
+  display: flex
+}
+
+#descripcion {
+  position: relative;
+  bottom: 30px;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.panel_evento h2 {
+  font-size: 500%;
+}
+
+.panel_evento p {
+  font-size: 200%;
+}
+
+#subheader {
+  font-size: 300%;
+}
