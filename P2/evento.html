@@ -6,6 +6,7 @@
 	<link rel="icon" href="img/logo.png">
 	<title>Conciertos SIBW</title>
 	<link rel="stylesheet" href="evento.css">
+	<script src="scripts/evento.js" defer></script>
 </head>
 
 <body>
@@ -84,9 +85,17 @@
 						<a href="evento_imprimir.html"><img src="img/impresora.png" alt="Imprimir evento"></a>
 					</div>
 
-					<div class="caja_comentarios">
-						<p>Comentarios</p>
-					</div>
+					<aside id="container_comentarios">
+						<button onclick="esconderComentarios()">Ocultar/Mostar comentarios</button>
+						<div id="caja_comentarios">
+							<h4>Comentarios</h4>
+							<div class="comentario">
+								<p>Sergio Ejemplo 22-03-21 18:39: ¡Qué ganas tengo de que llegue el día!</p>
+								<p>Ignacio Ejemplín 14-02-21 12:12:<br>Esta página es ofensiva a la vista</p>
+							</div>
+						</div>
+					</aside>
+					
 
 				</div>
 
@@ -99,6 +108,7 @@
 		</div>
 
 	</div>
+	
 </body>
 
 </html>
