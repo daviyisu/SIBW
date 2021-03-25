@@ -113,7 +113,7 @@
 								<label for="email">Email</label><br>
 								<input type="text" id="email" name="email"><br><br>
 								<label for="texto">Texto</label><br>
-								<textarea id="texto" rows="5" cols="35"></textarea>
+								<textarea id="texto" rows="5" cols="35" oninput="censurarPalabras()"></textarea>
 							</form>
 							<button type="button" onclick="
 							var comentario = postearComentario();

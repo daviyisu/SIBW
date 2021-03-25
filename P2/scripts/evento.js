@@ -14,7 +14,8 @@ function postearComentario() {
     alert("¡El campo del nombre está vacío!");
     return -1;
   } else {
-    var comentario = document.getElementById("fname").value;
+    var comentario = "\n";
+    comentario += document.getElementById("fname").value;
     comentario += " ";
     comentario += f.getDate() + "-" + (f.getMonth() + 1) + "-" + f.getFullYear();
     comentario += " ";
@@ -28,7 +29,6 @@ function postearComentario() {
         alert("¡El campo del texto está vacío!");
         return -1;
       } else {
-        censuraPalabras(document.getElementById("texto").value);
         comentario += document.getElementById("texto").value;
         return comentario;
       }
@@ -42,13 +42,24 @@ function validateEmail(email) {
   return re.test(email);
 }
 
-function censuraPalabras(texto) {
-  let blacklisted = ['puta', 'puto'];
+function palabraProhibida(texto) {
+  let blacklisted = ['hola', 'adios'];
   let foundInText = false;
   for (var i in blacklisted) {
     if (texto.toLowerCase().includes(blacklisted[i].toLowerCase())) foundInText = true;
   }
-  if (foundInText) {
-    alert("Palabra prohibida")
+  return foundInText;
+}
+
+function censurarPalabras(){
+  let comentario = document.getElementById("texto").value;
+  if(palabraProhibida(comentario)){
+    let num_asteriscos = comentario.split(" ").pop().length;
+    let cadenaValida = comentario.substring(0,comentario.lastIndexOf(" "));
+    let asteriscos = " ";
+    for(let i = 0; i<num_asteriscos; ++i){
+      asteriscos += "*";
+    }
+    document.getElementById("texto").value = cadenaValida += asteriscos;
   }
 }
