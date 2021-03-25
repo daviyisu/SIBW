@@ -28,6 +28,7 @@ function postearComentario() {
         alert("¡El campo del texto está vacío!");
         return -1;
       } else {
+        censuraPalabras(document.getElementById("texto").value);
         comentario += document.getElementById("texto").value;
         return comentario;
       }
@@ -39,4 +40,15 @@ function postearComentario() {
 function validateEmail(email) {
   var re = /\S+@\S+\.\S+/;
   return re.test(email);
+}
+
+function censuraPalabras(texto) {
+  let blacklisted = ['puta', 'puto'];
+  let foundInText = false;
+  for (var i in blacklisted) {
+    if (texto.toLowerCase().includes(blacklisted[i].toLowerCase())) foundInText = true;
+  }
+  if (foundInText) {
+    alert("Palabra prohibida")
+  }
 }
