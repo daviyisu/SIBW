@@ -173,8 +173,7 @@ a {
 
 
 #caja_comentarios {
-	border: 2px solid black;
-	height: 85%;
+
 	margin-top: 10px;
 }
 
@@ -192,3 +191,6 @@ a {
 	font-size: 100%
 }
 
+#zonaOcultable {
+	border: 2px solid black;
+}

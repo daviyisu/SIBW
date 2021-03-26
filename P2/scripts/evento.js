@@ -1,5 +1,5 @@
 function esconderComentarios() {
-  var x = document.getElementById("caja_comentarios");
+  var x = document.getElementById("zonaOcultable");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -40,7 +40,7 @@ function construirComentario() {
 function postearComentario() {
   var comentario = construirComentario();
   if (comentario != -1)
-    document.getElementById('caja_comentarios').innerHTML += comentario;
+    document.getElementById('caja_comentarios').innerHTML += '<div class ="comentario"><p>'+comentario+'</p></div>';
 }
 
 function validateEmail(email) {
