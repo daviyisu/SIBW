@@ -7,7 +7,7 @@ function esconderComentarios() {
   }
 }
 
-function postearComentario() {
+function construirComentario() {
   var valid = true;
   var f = new Date();
   if (document.getElementById("fname").value == "") {
@@ -37,6 +37,12 @@ function postearComentario() {
   }
 }
 
+function postearComentario() {
+  var comentario = construirComentario();
+  if (comentario != -1)
+    document.getElementById('caja_comentarios').innerHTML += comentario;
+}
+
 function validateEmail(email) {
   var re = /\S+@\S+\.\S+/;
   return re.test(email);
@@ -51,13 +57,13 @@ function palabraProhibida(texto) {
   return foundInText;
 }
 
-function censurarPalabras(){
+function censurarPalabras() {
   let comentario = document.getElementById("texto").value;
-  if(palabraProhibida(comentario)){
+  if (palabraProhibida(comentario)) {
     let num_asteriscos = comentario.split(" ").pop().length;
-    let cadenaValida = comentario.substring(0,comentario.lastIndexOf(" "));
+    let cadenaValida = comentario.substring(0, comentario.lastIndexOf(" "));
     let asteriscos = " ";
-    for(let i = 0; i<num_asteriscos; ++i){
+    for (let i = 0; i < num_asteriscos; ++i) {
       asteriscos += "*";
     }
     document.getElementById("texto").value = cadenaValida += asteriscos;

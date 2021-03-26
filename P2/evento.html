@@ -104,6 +104,9 @@
 							<h4>Comentarios</h4>
 							<div class="comentario">
 								<p>Sergio Ejemplo 22-3-21 18:39: ¡Qué ganas tengo de que llegue el día!</p>
+							</div>
+
+							<div class="comentario">
 								<p>Ignacio Ejemplín 14-2-21 12:12:<br>Esta página es ofensiva a la vista</p>
 							</div>
 
@@ -115,11 +118,7 @@
 								<label for="texto">Texto</label><br>
 								<textarea id="texto" rows="5" cols="35" oninput="censurarPalabras()"></textarea>
 							</form>
-							<button type="button" onclick="
-							var comentario = postearComentario();
-							if(comentario != -1)
-								document.getElementById('caja_comentarios').innerHTML += comentario;
-							">Enviar comentario.</button>
+							<button type="button" onclick="postearComentario()">Enviar comentario.</button>
 
 						</div>
 					</aside>
