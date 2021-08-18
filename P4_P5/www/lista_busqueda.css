@@ -1,0 +1,27 @@
+body {
+	background-color: #AEC804;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+img {
+    width: 80px;
+    height: 60px;
+}
+
+li {
+    font-size: 40px;
+    
+}
+ body{
+     max-width: 500px;
+     margin: auto;
+ }
+
+ #listaEventos{
+    border: 2px solid black;
+	background-color: beige;
+ }

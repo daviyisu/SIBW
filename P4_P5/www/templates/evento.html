@@ -1,0 +1,108 @@
+{% extends "padre.html" %}
+
+{% block central %}
+
+	{% block eventoStyle %}
+	<link rel="stylesheet" href="evento.css">
+	<script src="/templates/scripts/evento.js" defer></script>
+	{% endblock %}
+
+	
+	<div class="parte_baja">
+		
+
+		<div class="container_evento">
+
+			<div class="panel_evento">
+				<h2>Concierto {{ evento['nombre'] }}</h2>
+			{% if user.esGestor == 1 or user.esSuper == 1 %}
+				<form action="gestionEvento.php" method="post">
+					<input type="hidden" id="id" name="id" value={{ evento['id'] }}>
+					<input type="submit" value="Editar evento" />
+				</form>
+
+				<form action="borrarEvento.php" method="post">
+					<input type="hidden" id="id" name="id" value={{ evento['id'] }}>
+					<input type="submit" value="Borrar evento" />
+				</form>
+			{% endif %} 	
+				<p id="subheader">Conciertos SIBW<br>{{ evento['lugar'] }}</p>
+				<div class="cuerpo_evento">
+					<p id="descripcion">{{ evento['descripcion'] }}</p>
+					<div class="imagenes">
+
+						<div class="foto">
+							<img src={{ evento['ruta_artista'] }} alt={{ evento['nombre'] }}>
+							
+								<p>{{ evento['nombre'] }} - {{ evento['fecha'] }}
+							</a><br><span style="font-size:50%">Fotografía tomada por {{ evento['fotografo'] }}</span></p>
+							<!-- Aquí tenemos la descripción del evento, junto con una foto de la sala, el artista y enlaces a las redes sociales del artista (junto con el botón imprimir) -->
+						</div>
+
+						<div class="foto">
+							<img src={{ evento['ruta_sitio'] }} alt={{ evento['lugar'] }}>
+							
+								<p>El concierto tomará lugar en {{ evento['lugar'] }}
+							</a><br><span style="font-size:50%">Fotografía tomada por {{ evento['fotografo'] }}</span></p>
+						</div>
+
+					</div>
+					<div class="panel_redes">
+						<a href="https://www.instagram.com/soypablo777/?hl=es"><img src="img/instagram.png"
+								alt="Instagram"></a> <!-- Redes del artista y botón imprimir -->
+						<a href="https://twitter.com/soypablo777"><img src="img/twitter.png" alt="Twitter"></a>
+						<a href="evento_imprimir.html"><img src="img/impresora.png" alt="Imprimir evento"></a>
+					</div>
+
+
+					<aside id="container_comentarios">
+						<button onclick="esconderComentarios()">Ocultar/Mostar comentarios</button>
+						<div id="zonaOcultable">
+							<div id="caja_comentarios">
+								<h4>Comentarios</h4>
+
+								{% for i in comentarios %} <!-- Este for mete tantos comentarios como haya en el array devuelto por el servidor -->
+								<div class="comentario">
+									<p>{{i.nombre}} {{i.fecha}}: {{i.texto}}</p>
+									{% if user.esModerador == 1 %}
+										<form action="borrarComentario.php" method="post">
+											<input type="hidden" id="id" name="id" value={{i.id}}>
+											<input type="submit" value="Borrar" />
+										</form>
+
+										
+										<form action="gestionComentario.php" method="post">
+											<input type="hidden" id="id" name="id" value={{i.id}}>
+											<input type="submit" value="Editar" />
+										</form>
+										
+									{% endif %} 
+									
+										
+								</div>
+
+								{%endfor%}
+								
+
+							</div>
+							{% if user %}
+							<form>  <!-- Form con los campos necesarios para el comentario -->
+								
+								<input type="hidden" id="fname" name="fname" value={{user.nombre}}> <br>
+								
+								<input type="hidden" id="email" name="email" value={{user.email}}><br><br>
+								<label for="texto">¡Escribe tu comentario!</label><br>
+								<textarea id="texto" rows="5" cols="35" oninput="censurarPalabras()"></textarea>
+							</form>
+							<button type="button" onclick="postearComentario()">Enviar comentario.</button>
+							{% endif %} 
+						</div>
+
+					</aside>
+
+
+				</div>
+
+			</div>
+			{% endblock %}
+

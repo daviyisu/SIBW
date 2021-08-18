@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" href="img/logo.png">
+	<title>Conciertos SIBW</title>
+    {% block eventoStyle %}
+	<link rel="stylesheet" href="index.css">
+    {% endblock %}
+</head>
+
+<body>
+
+	<div class="header">
+		<img src="img/logo.png" alt="Logo">
+		<a href="index.php">
+			<h1>Conciertos SIBW</h1>
+		</a>
+		
+	{% if not user %}
+
+		<div class="menu1">
+		<a href="login.php">Iniciar sesión</a> <!-- Cabecera -->
+		<a href="registro.php">Registrarse</a>
+		<a href ="busquedaEventos.php">Búsqueda de eventos</a>
+		</div>
+
+		
+	{% else %}
+	<div class="menu1">
+		<p>Estas logueado. Tu nick es <strong>{{ user.nombre }}</strong>.</p>
+		<a href="logout.php">Logout</a>
+		<a href ="busquedaEventos.php?num={{ user.id }}">Búsqueda de eventos</a>
+		<a href="opciones.php">Opciones de usuario</a>
+	</div>
+	{% endif %}	
+	</div>
+
+    
+
+	<div class="parte_baja">
+		<div class="auxiliar">
+			<h2>Últimas noticias</h2>
+
+			<div class="noticia">
+				<a href="https://cuadernosdeseguridad.com/2020/06/comunicacion-eventos-seguridad-covid19/">
+					<h3>Efectos del COVID-19 en los eventos</h3>
+				</a>
+				<img src="img/covid.jpg" alt="COVID19">
+			</div>
+
+			<div class="noticia">
+				<a href="https://www.elmundo.es/papel/cultura/2020/11/25/5fbd54f5fc6c83b8508b4606.html">		<!-- Panel auxiliar con noticias -->
+					<h3>Entrevista con Morad</h3>
+				</a>
+				<img src="img/morad.jpg" alt="Morad">
+			</div>
+
+			<div class="noticia">
+				<a href="https://garajedelrock.com/noticias/joji-creador-del-harlem-shake-presenta-su-tercer-album-de-estudio-nectar/">
+					<h3>Joji lanza su segundo disco de estudio, "Néctar"</h3>
+				</a>
+				<img src="img/joji.jpg" alt="Joji">
+			</div>
+		</div>
+        {% block central %}
+
+		<div class="tabla_panel">
+			<table>
+				<tr>
+					<td><img src="img/boy_pablo.jpg" alt="boy pablo"><br><a href="evento.html">
+							<p>boy pablo - marzo en Madrid</p>
+						</a></td>
+					<td><img src="img/joji.jpg" alt="Joji"><br>
+						<p>Joji - mayo en Ciudad Real</p>
+					</td>
+					<td><img src="img/drake.jpg" alt="drake"><br>
+						<p>Drake - septiembre en Barcelona</p>
+					</td>
+				</tr>
+
+				<tr>
+					<td><img src="img/cure.jpg" alt="cure"><br>
+						<p>The Cure - abril en Sevilla</p>
+					</td>
+					<td><img src="img/trueno.jpg" alt="Trueno">					<!--¡¡¡¡¡¡¡ IMPORTANTE, solo el primer evento de la tabla tiene un link (como decía el guión) !!!!!-->
+						<p><br>Trueno - enero en Granada</p>
+					</td>
+					<td><img src="img/gambino.jpg" alt="gambino">
+						<p><br>Childish Gambino - noviembre en Jaén</p>
+					</td>
+				</tr>
+
+				<tr>
+					<td><img src="img/drums.jpg" alt="drums">
+						<p><br>The Drums - septiembre en Madrid</p>
+					</td>
+					<td><img src="img/orange.jpg" alt="orange">
+						<p><br>Rex Orange County - junio en La Rioja</p>
+					</td>
+					<td><img src="img/cupido.jpg" alt="cupido">
+						<p><br>Cupido - mayo en Valencia</p>
+					</td>
+				</tr>
+			</table>
+
+            {% endblock %}
+
+			<div class="panel_copyright">
+				<p>Copyright - David Jesús Ruiz de Valdivia Torres - SIBW 2021</p>		<!-- Panel de copyright -->
+			</div>
+
+		</div>
+
+
+	</div>
+</body>
+
+</html>

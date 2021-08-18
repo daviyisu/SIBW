@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <title>Opciones de usuario</title>
+    <link rel="stylesheet" href="./formulario.css">
+  </head>
+  
+  <body>
+  
+    <h1>Cambiar datos de usuario</h1>
+    <form action="opciones.php" method="post">
+      Nuevo nick: <input type="text" name="new_nick" /><br>
+      Nueva password: <input type="password" name="new_contraseña" /><br>
+      Nuevo email: <input type="text" name="new_email" /><br>
+      <input type="submit" value="Confirmar cambios" />
+    </form>
+
+    {% if user.esGestor == 1 or user.esSuper == 1%}
+    <h1>Crear nuevo evento</h1>
+    <h2>(Por defecto no se publicará)</h2>
+    <form action="crearEvento.php" method="post">
+    Nombre: <input type="text" name="nombre" /><br>
+    Fecha en formato YYYY-MM-DD: <input type="text" name="fecha" /><br>
+    Lugar: <input type="text" name="lugar" /><br>
+    Ruta imagen artista: <input type="text" name="ruta_artista"><br>
+    Ruta imagen lugar: <input type="text" name="ruta_lugar"><br>
+
+    
+    Descripcion: <br>
+    <textarea name="texto" rows="5" cols="35" ></textarea><br>
+    <input type="submit" value="Crear evento" />
+    </form>
+    {% endif %}
+
+
+    {% if user.esModerador == 1 or user.esGestor == 1 or user.esSuper == 1%}
+      <h1>Lista de comentarios</h1>
+      
+
+      {% for i in comentarios %} <!-- Este for mete tantos comentarios como haya en el array devuelto por el servidor -->
+								<div class="comentario">
+									<p>{{i.nombre}} {{i.fecha}}: {{i.texto}}</p>
+                </div>
+			{%endfor%}
+
+    {% endif %} 
+
+    {% if user.esGestor == 1 or user.esSuper == 1%}
+      <h1>Lista de eventos</h1>
+      
+
+      {% for i in eventos %} 
+								<div class="evento">
+									<p>{{i.nombre}} {{i.lugar}}: {{i.fecha}} ¿Está publicado? {{i.publicado}}</p>
+                  <form action="cambiarVisibilidadEvento.php" method="post">
+                    <input type="hidden" id="id" name="id" value={{i.id}}>
+                    <input type="submit" value="Publicar/Despublicar evento">
+                  </form>
+                </div>
+			{%endfor%}
+
+    {% endif %} 
+
+    {% if user.esSuper == 1%}
+      <h1>Lista de usuarios</h1>
+      
+
+      {% for i in usuarios %} 
+								<div class="usuario">
+									<p>{{i.nombre}} {{i.email}} ¿Es gestor? {{i.esGestor}} ¿Es moderador? {{i.esModerador}} ¿Es superusuario? {{i.esSuper}}</p>
+                  <form action="cambiarTipoUsuario.php" method="post">
+                    <input type="hidden" id="id" name="id" value={{i.id}}>
+                    <input type="checkbox" id="gestor" name="gestor" value="1">
+                    <label for="gestor"> Hacer gestor</label><br>
+                    <input type="checkbox" id="moderador" name="moderador" value="1">
+                    <label for="gestor"> Hacer moderador</label><br>
+                    <input type="checkbox" id="super" name="super" value="1">
+                    <label for="gestor"> Hacer superusuario</label><br>
+                    <input type="submit" value="Cambiar">
+                  </form>
+
+                </div>
+			{%endfor%}
+
+    {% endif %} 
+
+    <a href="index.php">Volver a inicio</a>
+
+  </body>
+
+</html>

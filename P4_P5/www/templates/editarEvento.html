@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Edición de evento</title>
+    <link rel="stylesheet" href="./formulario.css">
+  </head>
+  
+  <body>
+   
+    
+    <h1>Edición de evento</h1>
+    <form action="modificarEvento.php" method="post">
+    Nuevo nombre: <input type="text" name="nombre" /><br>
+    Nueva fecha en formato YYYY-MM-DD: <input type="text" name="fecha" /><br>
+    Nuevo lugar: <input type="text" name="lugar" /><br>
+    Ruta nueva imagen artista: <input type="text" name="ruta_artista"><br>
+    Ruta nueva imagen lugar: <input type="text" name="ruta_lugar"><br>
+    
+    Nueva descripcion: <br>
+    <textarea name="texto" rows="5" cols="35" ></textarea>
+    <input type="hidden" id="id" name="id" value={{id}}>
+    <input type="submit" value="Confirmar cambio" />
+    </form>
+   
+    <a href="evento.php?ev={{id}}">Volver a evento</a>
+  </body>
+
+</html>
